@@ -29,8 +29,18 @@
 		F172F7622C3FA54D00AB542E /* AudioRecognizerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudioRecognizerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F12435E02C5B413E00F9203F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F172F7452C3FA54B00AB542E /* AudioRecognizer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F172F7482C3FA54B00AB542E /* AudioRecognizer */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AudioRecognizer; sourceTree = "<group>"; };
+		F172F7482C3FA54B00AB542E /* AudioRecognizer */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F12435E02C5B413E00F9203F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = AudioRecognizer; sourceTree = "<group>"; };
 		F172F75B2C3FA54D00AB542E /* AudioRecognizerTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AudioRecognizerTests; sourceTree = "<group>"; };
 		F172F7652C3FA54D00AB542E /* AudioRecognizerUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AudioRecognizerUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -386,6 +396,7 @@
 				DEVELOPMENT_TEAM = 4YP7SQBLYV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AudioRecognizer/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app uses the microphone to record audio";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This app uses speech recognition to recognize audio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -417,6 +428,7 @@
 				DEVELOPMENT_TEAM = 4YP7SQBLYV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AudioRecognizer/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app uses the microphone to record audio";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "This app uses speech recognition to recognize audio";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
