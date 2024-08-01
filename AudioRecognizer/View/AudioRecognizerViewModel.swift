@@ -11,16 +11,22 @@ import Speech
 
 @Observable
 class AudioRecognizerViewModel {
-    var speechRecognizer: SpeechRecognizer
+    @ObservationIgnored var speechRecognizer: SpeechRecognizer
     var authStatus: SFSpeechRecognizerAuthorizationStatus
     var isRecording: Bool
     var text: String
+    @ObservationIgnored var soundID: SystemSoundID
 
     init() {
         speechRecognizer = SpeechRecognizer()
         authStatus = .notDetermined
         isRecording = false
         text = ""
+        soundID = 0
+
+        if let url = Bundle.main.url(forResource: "notification", withExtension: "m4a") {
+            AudioServicesCreateSystemSoundID(url as CFURL, &soundID)
+        }
 
         speechRecognizer.authStatusDidChange = { [weak self] status in
             self?.authStatus = status
@@ -28,6 +34,9 @@ class AudioRecognizerViewModel {
 
         speechRecognizer.resultDidChange = { [weak self] result in
             self?.text = result ?? ""
+            if result == "こんにちは" {
+                self?.playNotificationSound()
+            }
         }
 
         speechRecognizer.requestAuthorization()
@@ -45,5 +54,9 @@ class AudioRecognizerViewModel {
                 isRecording = false
             }
         }
+    }
+
+    func playNotificationSound() {
+        AudioServicesPlaySystemSound(soundID)
     }
 }
