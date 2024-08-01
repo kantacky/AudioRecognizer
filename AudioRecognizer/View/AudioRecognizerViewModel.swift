@@ -57,6 +57,7 @@ class AudioRecognizerViewModel {
     }
 
     func playNotificationSound() {
+        print("🎵")
         AudioServicesPlaySystemSound(soundID)
     }
 }
