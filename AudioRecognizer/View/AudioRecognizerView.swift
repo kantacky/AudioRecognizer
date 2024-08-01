@@ -5,6 +5,7 @@
 //  Created by Kanta Oikawa on 7/11/24.
 //
 
+import AVFoundation
 import SwiftUI
 
 struct AudioRecognizerView: View {
@@ -17,16 +18,29 @@ struct AudioRecognizerView: View {
 
             Spacer()
 
-            Button {
-                viewModel.onRecordButtonTapped()
-            } label: {
-                if viewModel.isRecording {
-                    Text("End")
-                } else {
-                    Text("Start")
+            HStack {
+                Button(viewModel.isRecording ? "End" : "Start") {
+                    viewModel.onRecordButtonTapped()
                 }
+                .disabled(viewModel.authStatus != .authorized)
+                .containerRelativeFrame(
+                    .horizontal,
+                    count: 2,
+                    span: 1,
+                    spacing: 0
+                )
+
+                Button("Play") {
+                    viewModel.playNotificationSound()
+                }
+                .containerRelativeFrame(
+                    .horizontal,
+                    count: 2,
+                    span: 1,
+                    spacing: 0
+                )
             }
-            .disabled(viewModel.authStatus != .authorized)
+            .buttonStyle(.bordered)
         }
         .padding()
     }
