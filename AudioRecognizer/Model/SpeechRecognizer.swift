@@ -67,7 +67,7 @@ class SpeechRecognizer: NSObject, SFSpeechRecognizerDelegate {
 
         // Configure the audio session for the app.
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+        try audioSession.setCategory(.playAndRecord, mode: .measurement, options: .duckOthers)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode
 
@@ -115,5 +115,11 @@ class SpeechRecognizer: NSObject, SFSpeechRecognizerDelegate {
     func endRecording() {
         audioEngine.stop()
         recognitionRequest?.endAudio()
+
+        recognitionTask?.cancel()
+        self.recognitionTask = nil
+
+        try? AVAudioSession.sharedInstance().setActive(false)
+        audioEngine.inputNode.removeTap(onBus: 0)
     }
 }
