@@ -44,27 +44,6 @@ class SpeechRecognizer: NSObject, SFSpeechRecognizerDelegate {
         SFSpeechRecognizer.requestAuthorization { authStatus in
             OperationQueue.main.addOperation {
                 self.authStatusDidChange(authStatus)
-                switch authStatus {
-                case .authorized:
-                    Task.detached {
-                        do {
-                            try await DataGenerator.export()
-                            // guard let assetPath = Bundle.main.path(forResource: "CustomLMData", ofType: "bin", inDirectory: "customlm/en_US") else {
-                            //     return
-                            // }
-                            // let assetUrl = URL(fileURLWithPath: assetPath)
-                            // try await SFSpeechLanguageModel.prepareCustomLanguageModel(
-                            //     for: assetUrl,
-                            //     clientIdentifier: "com.apple.SpokenWord",
-                            //     configuration: self.lmConfiguration
-                            // )
-                        } catch {
-                            NSLog("Failed to prepare custom LM: \(error.localizedDescription)")
-                        }
-                    }
-                default:
-                    break
-                }
             }
         }
     }
